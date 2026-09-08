@@ -13,11 +13,9 @@ plt.figure(figsize=(10,8))
 plt.scatter(final["log2FC"], final["neglog10padj"], s=4, c="grey", alpha=0.4)
 plt.scatter(final.loc[sig, "log2FC"], final.loc[sig, "neglog10padj"], s=6, c="red")
 
-for _, row in final.sort_values("padj").head(10).iterrows():
-    if pd.notna(row["Gene symbol"]):
-        plt.annotate(row["Gene symbol"],
-            (row["log2FC"], row["neglog10padj"]),
-            fontsize=7)
+label_genes = {"LEP", "FLT1", "ENG", "INHA", "PAPPA2", "FSTL3", "HTRA4", "CTH"}
+to_label = final[sig & final["Gene symbol"].isin(label_genes)]
+
 plt.axhline(-np.log10(0.05), ls="--", lw=0.8)        
 plt.axvline(0.5, ls="--", lw=0.8)
 plt.axvline(-0.5, ls="--", lw=0.8)

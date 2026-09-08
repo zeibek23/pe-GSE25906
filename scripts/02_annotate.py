@@ -9,7 +9,7 @@ results = pd.read_csv("results/01_log2fc.csv", index_col=0)
 print("Loaded Annotation Data:")
 print(annot.shape)
 print(annot.columns.to_list())
-print(annot.head)
+print(annot.head())
 
 print ("Loaded Results Data for log2fc:")
 print(results.shape)
