@@ -9,11 +9,12 @@ print(type(diagnosis))
 print(len(diagnosis))
 print(all(diagnosis.index == expression.columns))
 
+
+expression = expression[~expression.index.str.startswith("ILMN_13432")]
 overall_mean = expression.mean(axis=1)
 expression_filter = expression[overall_mean > 6]
 assert "ILMN_1705002" in expression_filter.index, "FLT1 was filtered out"
 print(expression_filter)
-expression = expression[~expression.index.str.startswith("ILMN_13432")]
 
 
 from scipy import stats

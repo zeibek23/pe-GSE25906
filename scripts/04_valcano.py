@@ -15,7 +15,9 @@ plt.scatter(final.loc[sig, "log2FC"], final.loc[sig, "neglog10padj"], s=6, c="re
 
 label_genes = {"LEP", "FLT1", "ENG", "INHA", "PAPPA2", "FSTL3", "HTRA4", "CTH"}
 to_label = final[sig & final["Gene symbol"].isin(label_genes)]
-
+for _, row in to_label.iterrows():
+    plt.annotate(row["Gene symbol"], (row["log2FC"], row["neglog10padj"]), fontsize=7)
+    
 plt.axhline(-np.log10(0.05), ls="--", lw=0.8)        
 plt.axvline(0.5, ls="--", lw=0.8)
 plt.axvline(-0.5, ls="--", lw=0.8)
